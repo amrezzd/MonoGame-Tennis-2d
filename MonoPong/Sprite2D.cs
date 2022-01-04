@@ -8,9 +8,10 @@ namespace MonoPong
         private readonly Texture2D _texture;
         protected Rectangle ScreenBounds { get; private set; }
 
+        public Rectangle Bounds { get => new Rectangle((int)Position.X, (int)Position.Y, Width, Height); }
         public Vector2 Velocity { get; set; } = Vector2.Zero;
         public int Height { get { return _texture.Height; } }
-        public float Width { get { return _texture.Width; } }
+        public int Width { get { return _texture.Width; } }
 
         public virtual Vector2 Position { get; set; }
 

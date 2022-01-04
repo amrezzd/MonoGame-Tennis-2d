@@ -23,12 +23,12 @@ namespace MonoPong
             }
         }
 
-        protected void MoveTowardsUp()
+        protected void MoveTowardsTop()
         {
             Velocity = new Vector2(0, -MoveSpeed);
         }
 
-        protected void MoveTowardsDown()
+        protected void MoveTowardsBottom()
         {
             Velocity = new Vector2(0, MoveSpeed);
         }
@@ -43,11 +43,11 @@ namespace MonoPong
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                MoveTowardsUp();
+                MoveTowardsTop();
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                MoveTowardsDown();
+                MoveTowardsBottom();
             }
 
             base.Update(gameTime, gameObjects);
@@ -64,11 +64,11 @@ namespace MonoPong
 
             if (gameObjects.Ball.Position.Y + gameObjects.Ball.Height < Position.Y)
             {
-                MoveTowardsUp();
+                MoveTowardsTop();
             }
             else if (gameObjects.Ball.Position.Y > Position.Y + Height)
             {
-                MoveTowardsDown();
+                MoveTowardsBottom();
             }
             base.Update(gameTime, gameObjects);
         }

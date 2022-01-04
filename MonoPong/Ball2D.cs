@@ -45,6 +45,19 @@ namespace MonoPong
                 {
                     Position = new Vector2(_attachedPaddle.Position.X + _attachedPaddle.Width, _attachedPaddle.Position.Y);
                 }
+            } else
+            {
+                if (Bounds.Intersects(gameObjects.PlayerPaddle.Bounds) || Bounds.Intersects(gameObjects.AiPaddle.Bounds))
+                {
+                    if (Position.X < gameObjects.PlayerPaddle.Width || Position.X > ScreenBounds.Width - gameObjects.AiPaddle.Width)
+                    {
+                        Velocity = new Vector2(Velocity.X,-Velocity.Y);
+                    }
+                    else
+                    {
+                        Velocity = new Vector2(-Velocity.X, Velocity.Y);
+                    }
+                }
             }
 
             base.Update(gameTime, gameObjects);
