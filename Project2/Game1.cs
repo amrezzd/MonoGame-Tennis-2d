@@ -8,7 +8,6 @@ namespace Project2
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        //private Texture2D paddle;
         private Paddle paddle;
 
         public Game1()
@@ -28,10 +27,7 @@ namespace Project2
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            paddle = new Paddle(Content.Load<Texture2D>("paddle"), Vector2.Zero);
-            
-            //paddle = Content.Load<Texture2D>("paddle");
-
+            paddle = new Paddle(Content.Load<Texture2D>("paddle"), Vector2.Zero, Window.ClientBounds);
             // TODO: use this.Content to load your game content here
         }
 
@@ -41,6 +37,8 @@ namespace Project2
                 Exit();
 
             // TODO: Add your update logic here
+            paddle.Update(gameTime);
+
             base.Update(gameTime);
         }
 
