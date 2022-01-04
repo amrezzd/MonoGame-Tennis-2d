@@ -8,22 +8,37 @@ namespace MonoPong
     internal class Ball2D : Sprite2D
     {
         private readonly float _moveSpeed = 2f;
-        private Paddle2D _attachedPaddle;
+        private readonly float _bounciness = 0.75f;
 
-        public Ball2D(Texture2D texture2d, Vector2 position) : base(texture2d, position) { }
+        private PlayerPaddle2D _attachedPaddle;
 
-        internal void AttachTo(Paddle2D paddle)
+        public override Vector2 Position
+        {
+            get => base.Position; set
+            {
+                base.Position = value;
+                if (Position.Y <= 0 || Position.Y >= ScreenBounds.Height - Height)
+                {
+                    Velocity = new Vector2(Velocity.X, -Velocity.Y);
+                }
+            }
+        }
+        public Ball2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds)
+        {
+        }
+
+        internal void AttachTo(PlayerPaddle2D paddle)
         {
             _attachedPaddle = paddle;
         }
 
-        internal override void Update(GameTime gameTime)
+        internal override void Update(GameTime gameTime, GameObjects gameObjects)
         {
             if (_attachedPaddle != null)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
-                    Velocity = new Vector2(_moveSpeed, _attachedPaddle.Velocity.Y);
+                    Velocity = new Vector2(_moveSpeed, _attachedPaddle.Velocity.Y * _bounciness);
                     _attachedPaddle = null;
                 }
                 else
@@ -32,8 +47,7 @@ namespace MonoPong
                 }
             }
 
-
-            base.Update(gameTime);
+            base.Update(gameTime, gameObjects);
         }
     }
 }

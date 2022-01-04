@@ -5,40 +5,72 @@ using System;
 
 namespace MonoPong
 {
-    internal class Paddle2D : Sprite2D
+    internal abstract class AbstractPaddle2D : Sprite2D
     {
-        private readonly float _moveSpeed = 2f;
-        private readonly Rectangle _screenBounds;
+
+        protected float MoveSpeed { get; } = 2f;
+
+        protected AbstractPaddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds) { }
 
         public override Vector2 Position
         {
             get => base.Position;
             set
             {
-                float yBounded = MathHelper.Clamp(value.Y, 0, _screenBounds.Height - Height);
+                float yBounded = MathHelper.Clamp(value.Y, 0, ScreenBounds.Height - Height);
                 value.Y = yBounded;
                 base.Position = value;
             }
         }
 
-        public Paddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position)
+        protected void MoveTowardsUp()
         {
-            this._screenBounds = screenBounds;
+            Velocity = new Vector2(0, -MoveSpeed);
         }
 
-        internal override void Update(GameTime gameTime)
+        protected void MoveTowardsDown()
+        {
+            Velocity = new Vector2(0, MoveSpeed);
+        }
+    }
+
+    internal class PlayerPaddle2D : AbstractPaddle2D
+    {
+
+        public PlayerPaddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds) { }
+
+        internal override void Update(GameTime gameTime, GameObjects gameObjects)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                Velocity = new Vector2(0, -_moveSpeed);
+                MoveTowardsUp();
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-
-                Velocity = new Vector2(0, _moveSpeed);
+                MoveTowardsDown();
             }
 
-            base.Update(gameTime);
+            base.Update(gameTime, gameObjects);
+        }
+    }
+
+
+    internal class AiPaddle2D : AbstractPaddle2D
+    {
+        public AiPaddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds) { }
+
+        internal override void Update(GameTime gameTime, GameObjects gameObjects)
+        {
+
+            if (gameObjects.Ball.Position.Y + gameObjects.Ball.Height < Position.Y)
+            {
+                MoveTowardsUp();
+            }
+            else if (gameObjects.Ball.Position.Y > Position.Y + Height)
+            {
+                MoveTowardsDown();
+            }
+            base.Update(gameTime, gameObjects);
         }
     }
 }
