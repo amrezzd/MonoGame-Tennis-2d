@@ -12,7 +12,8 @@ namespace MonoPong
 
         public override Vector2 Position
         {
-            get => base.Position; set
+            get => base.Position;
+            set
             {
                 float yBounded = MathHelper.Clamp(value.Y, 0, _screenBounds.Height - Height);
                 value.Y = yBounded;
@@ -20,7 +21,7 @@ namespace MonoPong
             }
         }
 
-        public Paddle2D(Texture2D texture2d, Vector2 location, Rectangle screenBounds) : base(texture2d, location)
+        public Paddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position)
         {
             this._screenBounds = screenBounds;
         }
