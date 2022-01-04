@@ -8,7 +8,7 @@ namespace MonoPong
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Paddle paddle;
+        private Paddle2D paddle;
         private Ball ball;
 
         public Game1()
@@ -28,7 +28,7 @@ namespace MonoPong
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            paddle = new Paddle(Content.Load<Texture2D>("paddle"), Vector2.Zero, Window.ClientBounds);
+            paddle = new Paddle2D(Content.Load<Texture2D>("paddle"), Vector2.Zero, Window.ClientBounds);
             ball = new Ball(Content.Load<Texture2D>("ball"), Vector2.Zero);
             ball.AttachTo(paddle);
             // TODO: use this.Content to load your game content here

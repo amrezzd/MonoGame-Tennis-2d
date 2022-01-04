@@ -6,25 +6,19 @@ namespace MonoPong
 {
     internal class Ball : Sprite2D
     {
-        private Paddle paddle;
+        private Paddle2D _attachedPaddle;
         public Ball(Texture2D load, Vector2 location) : base(load, location)
         {
         }
 
-        protected override void CheckBounds()
+        internal void AttachTo(Paddle2D paddle)
         {
-            // no boundaries yet
-        }
-
-        internal void AttachTo(Paddle paddle)
-        {
-            this.paddle = paddle;
+            _attachedPaddle = paddle;
         }
 
         internal override void Update(GameTime gameTime)
         {
-            position.X = paddle.Position.X + paddle.Width;
-            position.Y = paddle.Position.Y;
+            Position = new Vector2(_attachedPaddle.Position.X + _attachedPaddle.Width, _attachedPaddle.Position.Y);
             base.Update(gameTime);
         }
     }

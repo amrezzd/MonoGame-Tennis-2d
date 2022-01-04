@@ -5,35 +5,29 @@ namespace MonoPong
 {
     internal abstract class Sprite2D
     {
-        private readonly Texture2D texture;
+        private readonly Texture2D _texture;
 
-        protected Vector2 velocity = Vector2.Zero;
-        protected Vector2 position;
-        public Vector2 Position { get { return position; } }
+        public virtual Vector2 Position { get; set; }
 
-        public int Height { get { return texture.Height; } }
+        public Vector2 Velocity { get; set; } = Vector2.Zero;
+        public int Height { get { return _texture.Height; } }
 
-        public float Width { get { return texture.Width; } }
+        public float Width { get { return _texture.Width; } }
 
-        public Sprite2D(Texture2D load, Vector2 location)
+        public Sprite2D(Texture2D texture2d, Vector2 position)
         {
-            this.texture = load;
-            this.position = location;
+            this._texture = texture2d;
+            this.Position = position;
         }
 
         internal void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, Color.White);
+            spriteBatch.Draw(_texture, Position, Color.White);
         }
 
         internal virtual void Update(GameTime gameTime)
         {
-            position += velocity;
-            CheckBounds();
+            Position += Velocity;
         }
-
-        protected abstract void CheckBounds();
-
-
     }
 }
