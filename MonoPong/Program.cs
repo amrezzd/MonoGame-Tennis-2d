@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project2
+namespace MonoPong
 {
     public static class Program
     {

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Project2
+namespace MonoPong
 {
     public class Game1 : Game
     {

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Project2
+namespace MonoPong
 {
     internal class Ball : Sprite2D
     {

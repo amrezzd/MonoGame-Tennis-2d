@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 
-namespace Project2
+namespace MonoPong
 {
     internal class Paddle : Sprite2D
     {
