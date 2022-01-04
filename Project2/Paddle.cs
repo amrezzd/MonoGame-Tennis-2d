@@ -33,8 +33,8 @@ namespace Project2
 
         protected override void CheckBounds()
         {
-            float yLocation = MathHelper.Clamp(location.Y, 0, screenBounds.Height - Height);
-            location.Y = yLocation;
+            float yLocation = MathHelper.Clamp(position.Y, 0, screenBounds.Height - Height);
+            position.Y = yLocation;
         }
     }
 
@@ -43,30 +43,27 @@ namespace Project2
         private readonly Texture2D texture;
 
         protected Vector2 velocity = Vector2.Zero;
-        protected Vector2 location;
+        protected Vector2 position;
+        public Vector2 Position { get { return position; } }
 
-        public int Height
-        {
-            get
-            {
-                return texture.Height;
-            }
-        }
+        public int Height { get { return texture.Height; } }
+
+        public float Width { get { return texture.Width; } }
 
         public Sprite2D(Texture2D load, Vector2 location)
         {
             this.texture = load;
-            this.location = location;
+            this.position = location;
         }
 
         internal void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, location, Color.White);
+            spriteBatch.Draw(texture, position, Color.White);
         }
 
         internal virtual void Update(GameTime gameTime)
         {
-            location += velocity;
+            position += velocity;
             CheckBounds();
         }
 

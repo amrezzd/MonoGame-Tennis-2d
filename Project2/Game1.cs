@@ -9,6 +9,7 @@ namespace Project2
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Paddle paddle;
+        private Ball ball;
 
         public Game1()
         {
@@ -28,6 +29,8 @@ namespace Project2
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             paddle = new Paddle(Content.Load<Texture2D>("paddle"), Vector2.Zero, Window.ClientBounds);
+            ball = new Ball(Content.Load<Texture2D>("ball"), Vector2.Zero);
+            ball.AttachTo(paddle);
             // TODO: use this.Content to load your game content here
         }
 
@@ -38,6 +41,7 @@ namespace Project2
 
             // TODO: Add your update logic here
             paddle.Update(gameTime);
+            ball.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -49,6 +53,7 @@ namespace Project2
 
             _spriteBatch.Begin();
             paddle.Draw(_spriteBatch);
+            ball.Draw(_spriteBatch);
 
             _spriteBatch.End();
             base.Draw(gameTime);
