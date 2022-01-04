@@ -23,8 +23,8 @@ namespace MonoPong
 
         internal override void Update(GameTime gameTime)
         {
-            position = paddle.Position;
-            position.X += paddle.Width;
+            position.X = paddle.Position.X + paddle.Width;
+            position.Y = paddle.Position.Y;
             base.Update(gameTime);
         }
     }
