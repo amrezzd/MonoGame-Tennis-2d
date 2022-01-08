@@ -5,7 +5,7 @@ namespace MonoPong
 {
     internal abstract class Sprite2D
     {
-        private readonly Texture2D _texture;
+        protected readonly Texture2D _texture;
         protected Rectangle ScreenBounds { get; private set; }
 
         public Rectangle Bounds { get => new Rectangle((int)Position.X, (int)Position.Y, Width, Height); }
@@ -23,12 +23,12 @@ namespace MonoPong
             this.ScreenBounds = screenBounds;
         }
 
-        internal void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(_texture, Position, Color.White);
         }
 
-        internal virtual void Update(GameTime gameTime, GameObjects gameObjects)
+        public virtual void Update(GameTime gameTime, GameObjects gameObjects)
         {
             Position += Velocity;
         }

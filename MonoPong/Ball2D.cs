@@ -9,6 +9,7 @@ namespace MonoPong
     {
         private readonly float _moveSpeed = 2f;
         private readonly float _bounciness = 0.75f;
+        private bool _touchable = true;
 
         private PlayerPaddle2D _attachedPaddle;
 
@@ -32,7 +33,7 @@ namespace MonoPong
             _attachedPaddle = paddle;
         }
 
-        internal override void Update(GameTime gameTime, GameObjects gameObjects)
+        public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
             if (_attachedPaddle != null)
             {
@@ -45,22 +46,38 @@ namespace MonoPong
                 {
                     Position = new Vector2(_attachedPaddle.Position.X + _attachedPaddle.Width, _attachedPaddle.Position.Y);
                 }
-            } else
+            }
+            else if (_touchable)
             {
-                if (Bounds.Intersects(gameObjects.PlayerPaddle.Bounds) || Bounds.Intersects(gameObjects.AiPaddle.Bounds))
+                if (
+                    (Bounds.Intersects(gameObjects.PlayerPaddle.Surface) && IsMovingLeft()) ||
+                    (Bounds.Intersects(gameObjects.AiPaddle.Surface) && IsMovingRight())
+                    )
                 {
-                    if (Position.X < gameObjects.PlayerPaddle.Width || Position.X > ScreenBounds.Width - gameObjects.AiPaddle.Width)
-                    {
-                        Velocity = new Vector2(Velocity.X,-Velocity.Y);
-                    }
-                    else
-                    {
-                        Velocity = new Vector2(-Velocity.X, Velocity.Y);
-                    }
+                    Velocity = new Vector2(-Velocity.X, Velocity.Y);
                 }
+                else if (
+                    (Bounds.Intersects(gameObjects.PlayerPaddle.Bounds) && IsMovingLeft()) || 
+                    (Bounds.Intersects(gameObjects.AiPaddle.Bounds) && IsMovingRight())
+                    )
+                {
+                    Velocity = new Vector2(Velocity.X, -Velocity.Y);
+                    _touchable = false;
+                }
+
             }
 
             base.Update(gameTime, gameObjects);
+        }
+
+        private bool IsMovingLeft()
+        {
+            return Velocity.X < 0;
+        }
+
+        private bool IsMovingRight()
+        {
+            return Velocity.X > 0;
         }
     }
 }

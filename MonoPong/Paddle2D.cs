@@ -10,6 +10,8 @@ namespace MonoPong
 
         protected float MoveSpeed { get; } = 2f;
 
+        public abstract Rectangle Surface { get; }
+
         protected AbstractPaddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds) { }
 
         public override Vector2 Position
@@ -37,9 +39,11 @@ namespace MonoPong
     internal class PlayerPaddle2D : AbstractPaddle2D
     {
 
+        public override Rectangle Surface { get => new Rectangle(Width - 3, (int)Position.Y, 3, Height); }
+
         public PlayerPaddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds) { }
 
-        internal override void Update(GameTime gameTime, GameObjects gameObjects)
+        public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
@@ -52,14 +56,23 @@ namespace MonoPong
 
             base.Update(gameTime, gameObjects);
         }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            spriteBatch.Draw(_texture, Surface, Color.Red);
+
+        }
     }
 
 
     internal class AiPaddle2D : AbstractPaddle2D
     {
+
+        public override Rectangle Surface { get => new Rectangle(ScreenBounds.Width - Width, (int)Position.Y, 3, Height); }
+
         public AiPaddle2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds) { }
 
-        internal override void Update(GameTime gameTime, GameObjects gameObjects)
+        public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
 
             if (gameObjects.Ball.Position.Y + gameObjects.Ball.Height < Position.Y)
@@ -71,6 +84,13 @@ namespace MonoPong
                 MoveTowardsBottom();
             }
             base.Update(gameTime, gameObjects);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            spriteBatch.Draw(_texture, Surface, Color.Red);
+
         }
     }
 }
