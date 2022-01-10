@@ -12,6 +12,7 @@ namespace MonoPong
         private AiPaddle2D _aiPaddle;
         private Ball2D _ball;
         private GameObjects _gameObjects;
+        private Score _score;
 
         public Game1()
         {
@@ -41,7 +42,9 @@ namespace MonoPong
             _ball = new Ball2D(Content.Load<Texture2D>("ball"), Vector2.Zero, Window.ClientBounds);
             _ball.AttachTo(_playerPaddle);
 
-            _gameObjects = new GameObjects { PlayerPaddle = _playerPaddle, AiPaddle = _aiPaddle, Ball = _ball};
+            _score = new Score(Content.Load<SpriteFont>("retro"), Window.ClientBounds);
+
+            _gameObjects = new GameObjects { PlayerPaddle = _playerPaddle, AiPaddle = _aiPaddle, Ball = _ball, Score = _score};
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,6 +66,7 @@ namespace MonoPong
             _playerPaddle.Draw(_spriteBatch);
             _aiPaddle.Draw(_spriteBatch);
             _ball.Draw(_spriteBatch);
+            _score.Draw(_spriteBatch);
 
             _spriteBatch.End();
             base.Draw(gameTime);
