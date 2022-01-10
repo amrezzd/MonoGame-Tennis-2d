@@ -9,9 +9,12 @@ namespace MonoPong
     {
         private readonly float _moveSpeed = 2f;
         private readonly float _bounciness = 0.75f;
-        private bool _touchable = true;
 
         private PlayerPaddle2D _attachedPaddle;
+
+        public Ball2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds)
+        {
+        }
 
         public override Vector2 Position
         {
@@ -24,11 +27,9 @@ namespace MonoPong
                 }
             }
         }
-        public Ball2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds)
-        {
-        }
 
-        internal void AttachTo(PlayerPaddle2D paddle)
+
+        public void AttachTo(PlayerPaddle2D paddle)
         {
             _attachedPaddle = paddle;
         }
@@ -47,28 +48,36 @@ namespace MonoPong
                     Position = new Vector2(_attachedPaddle.Position.X + _attachedPaddle.Width, _attachedPaddle.Position.Y);
                 }
             }
-            else if (_touchable)
+            else
             {
+                // Check if the ball is touched player's paddle surface while moving left,
+                // or it touched ai paddle surface while right
                 if (
-                    (Bounds.Intersects(gameObjects.PlayerPaddle.Surface) && IsMovingLeft()) ||
-                    (Bounds.Intersects(gameObjects.AiPaddle.Surface) && IsMovingRight())
+                    (Bounds.Intersects(gameObjects.PlayerPaddle.Surface) && Velocity.X < 0) ||
+                    (Bounds.Intersects(gameObjects.AiPaddle.Surface) && Velocity.X > 0)
                     )
                 {
-                    Velocity = new Vector2(-Velocity.X, Velocity.Y);
-                }
-                else if (
-                    (Bounds.Intersects(gameObjects.PlayerPaddle.Bounds) && IsMovingLeft()) || 
-                    (Bounds.Intersects(gameObjects.AiPaddle.Bounds) && IsMovingRight())
-                    )
-                {
-                    Velocity = new Vector2(Velocity.X, -Velocity.Y);
-                    _touchable = false;
-                }
 
+                    AbstractPaddle2D collidedPaddle = Velocity.X < 0 ? gameObjects.PlayerPaddle : gameObjects.AiPaddle;
+
+                    // Change the ball direction horizontally
+                    Velocity = new Vector2(-Velocity.X, Velocity.Y);
+
+                    // if ball touched the paddle corner, we need to change vertical direction too
+                    float ballCenterPos = Position.Y + Height / 2;
+                    if (
+                        (ballCenterPos < collidedPaddle.Position.Y && Velocity.Y > 0) ||
+                        (ballCenterPos > collidedPaddle.Position.Y + collidedPaddle.Height && Velocity.Y < 0)
+                        )
+                    {
+                        Velocity = new Vector2(Velocity.X, -Velocity.Y);
+                    }
+                }
             }
 
             base.Update(gameTime, gameObjects);
         }
+
 
         private bool IsMovingLeft()
         {
