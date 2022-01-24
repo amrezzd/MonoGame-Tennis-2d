@@ -4,7 +4,7 @@ using System;
 
 namespace MonoPong
 {
-    public class Score
+    internal class Score
     {
         private readonly SpriteFont _spriteFont;
         private readonly Rectangle _screenBounds;
@@ -25,6 +25,20 @@ namespace MonoPong
             var xPosition = _screenBounds.Width / 2 - _spriteFont.MeasureString(scoreText).X / 2;
             var position = new Vector2(xPosition, _screenBounds.Height - 100);
             spriteBatch.DrawString(_spriteFont, scoreText, position, Color.White);
+        }
+
+        public void Update(GameTime gameTime, GameObjects gameObjects)
+        {
+            if (gameObjects.Ball.Position.X + gameObjects.Ball.Width < 0)
+            {
+                AiPlayerScore++;
+                gameObjects.Ball.AttachTo(gameObjects.PlayerPaddle);
+            }
+            else if (gameObjects.Ball.Position.X > _screenBounds.Width)
+            {
+                PlayerScore++;
+                gameObjects.Ball.AttachTo(gameObjects.PlayerPaddle);
+            }
         }
     }
 }

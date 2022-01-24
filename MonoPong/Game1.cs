@@ -55,6 +55,7 @@ namespace MonoPong
             _playerPaddle.Update(gameTime, _gameObjects);
             _aiPaddle.Update(gameTime, _gameObjects);
             _ball.Update(gameTime, _gameObjects);
+            _score.Update(gameTime, _gameObjects);
 
             base.Update(gameTime);
         }

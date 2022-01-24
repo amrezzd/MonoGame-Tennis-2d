@@ -10,7 +10,7 @@ namespace MonoPong
         private readonly float _moveSpeed = 2f;
         private readonly float _bounciness = 0.75f;
 
-        private PlayerPaddle2D _attachedPaddle;
+        private AbstractPaddle2D _attachedPaddle;
 
         public Ball2D(Texture2D texture2d, Vector2 position, Rectangle screenBounds) : base(texture2d, position, screenBounds)
         {
@@ -29,7 +29,7 @@ namespace MonoPong
         }
 
 
-        public void AttachTo(PlayerPaddle2D paddle)
+        public void AttachTo(AbstractPaddle2D paddle)
         {
             _attachedPaddle = paddle;
         }
@@ -76,17 +76,6 @@ namespace MonoPong
             }
 
             base.Update(gameTime, gameObjects);
-        }
-
-
-        private bool IsMovingLeft()
-        {
-            return Velocity.X < 0;
-        }
-
-        private bool IsMovingRight()
-        {
-            return Velocity.X > 0;
         }
     }
 }
