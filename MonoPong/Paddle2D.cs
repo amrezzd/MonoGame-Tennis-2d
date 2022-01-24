@@ -34,6 +34,12 @@ namespace MonoPong
         {
             Velocity = new Vector2(0, MoveSpeed);
         }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            spriteBatch.Draw(_texture, Surface, Color.Red);
+        }
     }
 
     internal class PlayerPaddle2D : AbstractPaddle2D
@@ -59,8 +65,6 @@ namespace MonoPong
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.Draw(_texture, Surface, Color.Red);
-
         }
     }
 
@@ -74,7 +78,6 @@ namespace MonoPong
 
         public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
-
             if (gameObjects.Ball.Position.Y + gameObjects.Ball.Height < Position.Y)
             {
                 MoveTowardsTop();
@@ -89,7 +92,6 @@ namespace MonoPong
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            spriteBatch.Draw(_texture, Surface, Color.Red);
 
         }
     }
