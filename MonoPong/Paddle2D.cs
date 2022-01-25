@@ -78,11 +78,13 @@ namespace MonoPong
 
         public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
-            if (gameObjects.Ball.Position.Y + gameObjects.Ball.Height < Position.Y)
+            var randomThreshold = new Random().Next(30, 80);
+
+            if (gameObjects.Ball.Position.Y + gameObjects.Ball.Height < Position.Y - randomThreshold)
             {
                 MoveTowardsTop();
             }
-            else if (gameObjects.Ball.Position.Y > Position.Y + Height)
+            else if (gameObjects.Ball.Position.Y > Position.Y + Height + randomThreshold)
             {
                 MoveTowardsBottom();
             }
