@@ -8,7 +8,7 @@ namespace MonoPong
     internal abstract class AbstractPaddle2D : Sprite2D
     {
 
-        protected float MoveSpeed { get; } = 2f;
+        protected float MoveSpeed { get; } = 90f;
 
         public abstract Rectangle Surface { get; }
 
@@ -78,7 +78,7 @@ namespace MonoPong
 
         public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
-            var randomThreshold = new Random().Next(30, 80);
+            var randomThreshold = new Random().Next(30, 40);
 
             if (gameObjects.Ball.Position.Y + gameObjects.Ball.Height < Position.Y - randomThreshold)
             {

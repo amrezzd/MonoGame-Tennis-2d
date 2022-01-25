@@ -30,7 +30,7 @@ namespace MonoPong
 
         public virtual void Update(GameTime gameTime, GameObjects gameObjects)
         {
-            Position += Velocity;
+            Position += Velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
     }
 }

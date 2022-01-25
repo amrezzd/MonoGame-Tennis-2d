@@ -7,7 +7,7 @@ namespace MonoPong
 {
     internal class Ball2D : Sprite2D
     {
-        private readonly float _moveSpeed = 2f;
+        private readonly float _moveSpeed = 150f;
         private readonly float _bounciness = 0.75f;
 
         private AbstractPaddle2D _attachedPaddle;
