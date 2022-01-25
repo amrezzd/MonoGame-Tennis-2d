@@ -51,11 +51,11 @@ namespace MonoPong
 
         public override void Update(GameTime gameTime, GameObjects gameObjects)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            if (Keyboard.GetState().IsKeyDown(Keys.Left) || gameObjects.TouchInput.Up)
             {
                 MoveTowardsTop();
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            else if (Keyboard.GetState().IsKeyDown(Keys.Right) || gameObjects.TouchInput.Down)
             {
                 MoveTowardsBottom();
             }

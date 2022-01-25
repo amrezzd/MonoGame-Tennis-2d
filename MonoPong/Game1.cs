@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
+using System;
 
 namespace MonoPong
 {
@@ -24,6 +26,7 @@ namespace MonoPong
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            TouchPanel.EnabledGestures = GestureType.VerticalDrag | GestureType.Flick | GestureType.Tap;
 
             base.Initialize();
         }
@@ -33,7 +36,7 @@ namespace MonoPong
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Texture2D paddleTexture = Content.Load<Texture2D>("paddle");
-            
+
             _playerPaddle = new PlayerPaddle2D(paddleTexture, Vector2.Zero, Window.ClientBounds);
 
             Vector2 aiPaddlePos = new Vector2(Window.ClientBounds.Width - _playerPaddle.Width, 0);
@@ -44,7 +47,7 @@ namespace MonoPong
 
             _score = new Score(Content.Load<SpriteFont>("retro"), Window.ClientBounds);
 
-            _gameObjects = new GameObjects { PlayerPaddle = _playerPaddle, AiPaddle = _aiPaddle, Ball = _ball, Score = _score};
+            _gameObjects = new GameObjects { PlayerPaddle = _playerPaddle, AiPaddle = _aiPaddle, Ball = _ball, Score = _score };
         }
 
         protected override void Update(GameTime gameTime)
@@ -52,12 +55,37 @@ namespace MonoPong
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            _gameObjects.TouchInput = GetTouchInput();
             _playerPaddle.Update(gameTime, _gameObjects);
             _aiPaddle.Update(gameTime, _gameObjects);
             _ball.Update(gameTime, _gameObjects);
             _score.Update(gameTime, _gameObjects);
 
             base.Update(gameTime);
+        }
+
+        private TouchInput GetTouchInput()
+        {
+            var touchInput = new TouchInput();
+
+            while (TouchPanel.IsGestureAvailable)
+            {
+                var gesture = TouchPanel.ReadGesture();
+                if (gesture.Delta.Y > 0)
+                {
+                    touchInput.Down = true;
+                }
+                if (gesture.Delta.Y < 0)
+                {
+                    touchInput.Up = true;
+                }
+                if (gesture.GestureType == GestureType.Tap)
+                {
+                    touchInput.Tapped = true;
+                }
+            }
+
+            return touchInput;
         }
 
         protected override void Draw(GameTime gameTime)

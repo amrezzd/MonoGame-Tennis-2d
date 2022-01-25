@@ -38,7 +38,7 @@ namespace MonoPong
         {
             if (_attachedPaddle != null)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                if (Keyboard.GetState().IsKeyDown(Keys.Space) || gameObjects.TouchInput.Tapped)
                 {
                     Velocity = new Vector2(_moveSpeed, _attachedPaddle.Velocity.Y * _bounciness);
                     _attachedPaddle = null;
