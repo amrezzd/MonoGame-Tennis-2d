@@ -37,15 +37,16 @@ namespace MonoPong
 
             Texture2D paddleTexture = Content.Load<Texture2D>("paddle");
 
-            _playerPaddle = new PlayerPaddle2D(paddleTexture, Vector2.Zero, Window.ClientBounds);
+            var gameBounds = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            _playerPaddle = new PlayerPaddle2D(paddleTexture, Vector2.Zero, gameBounds);
 
-            Vector2 aiPaddlePos = new Vector2(Window.ClientBounds.Width - _playerPaddle.Width, 0);
-            _aiPaddle = new AiPaddle2D(paddleTexture, aiPaddlePos, Window.ClientBounds);
+            Vector2 aiPaddlePos = new Vector2(gameBounds.Width - _playerPaddle.Width, 0);
+            _aiPaddle = new AiPaddle2D(paddleTexture, aiPaddlePos, gameBounds);
 
-            _ball = new Ball2D(Content.Load<Texture2D>("ball"), Vector2.Zero, Window.ClientBounds);
+            _ball = new Ball2D(Content.Load<Texture2D>("ball"), Vector2.Zero, gameBounds);
             _ball.AttachTo(_playerPaddle);
 
-            _score = new Score(Content.Load<SpriteFont>("retro"), Window.ClientBounds);
+            _score = new Score(Content.Load<SpriteFont>("retro"), gameBounds);
 
             _gameObjects = new GameObjects { PlayerPaddle = _playerPaddle, AiPaddle = _aiPaddle, Ball = _ball, Score = _score };
         }
