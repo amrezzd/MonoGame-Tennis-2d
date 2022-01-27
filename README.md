@@ -6,4 +6,4 @@ This is a simple multi-platform Pong-like tennis-themed arcade game using MonoGa
 
 
 # Credits
-This is based on PongCloneDemo project from John Sonmez.
+This is based on PongCloneDemo project by John Sonmez.
