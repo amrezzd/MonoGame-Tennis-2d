@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace MonoPong
+namespace Tennis2d
 {
     internal class Score
     {

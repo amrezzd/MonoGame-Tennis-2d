@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoPong
+namespace Tennis2d
 {
     public static class Program
     {

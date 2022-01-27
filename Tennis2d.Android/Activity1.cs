@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Views;
 using Microsoft.Xna.Framework;
 
-namespace MonoPong.Android
+namespace Tennis2d.Android
 {
     [Activity(
         Label = "@string/app_name",

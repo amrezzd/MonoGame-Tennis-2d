@@ -8,9 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("MonoPong.Android.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Tennis2D.Android.Resource", IsApplication=true)]
 
-namespace MonoPong.Android
+namespace Tennis2D.Android
 {
 	
 	

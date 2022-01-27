@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonoPong.Android</RootNamespace>
-    <AssemblyName>MonoPong.Android</AssemblyName>
+    <RootNamespace>Tennis2D.Android</RootNamespace>
+    <AssemblyName>Tennis-2d.Android</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidApplication>true</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -58,22 +58,22 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MonoPong\Ball2D.cs">
+    <Compile Include="..\Tennis2d\Ball2D.cs">
       <Link>Ball2D.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Game1.cs">
+    <Compile Include="..\Tennis2d\Game1.cs">
       <Link>Game1.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\GameObjects.cs">
+    <Compile Include="..\Tennis2d\GameObjects.cs">
       <Link>GameObjects.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Paddle2D.cs">
+    <Compile Include="..\Tennis2d\Paddle2D.cs">
       <Link>Paddle2D.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Score.cs">
+    <Compile Include="..\Tennis2d\Score.cs">
       <Link>Score.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Sprite2D.cs">
+    <Compile Include="..\Tennis2d\Sprite2D.cs">
       <Link>Sprite2D.cs</Link>
     </Compile>
     <Compile Include="Activity1.cs" />

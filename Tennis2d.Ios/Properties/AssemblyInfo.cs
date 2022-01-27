@@ -4,8 +4,8 @@ using System.Runtime.CompilerServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MonoPong.Ios")]
-[assembly: AssemblyProduct("MonoPong.Ios")]
+[assembly: AssemblyTitle("Tennis-2d.Ios")]
+[assembly: AssemblyProduct("Tennis-2d.Ios")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]

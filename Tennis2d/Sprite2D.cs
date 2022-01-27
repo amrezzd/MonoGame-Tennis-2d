@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MonoPong
+namespace Tennis2d
 {
     internal abstract class Sprite2D
     {

@@ -1,4 +1,4 @@
-﻿namespace MonoPong
+﻿namespace Tennis2d
 {
     internal class GameObjects
     {

@@ -7,9 +7,9 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{1483352D-4D5D-489C-A049-DB5F03136176}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MonoPong.Ios</RootNamespace>
+    <RootNamespace>Tennis2d.Ios</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>MonoPong.Ios</AssemblyName>
+    <AssemblyName>Tennis2d.Ios</AssemblyName>
     <ProvisioningType>manual</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -111,22 +111,22 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MonoPong\Ball2D.cs">
+    <Compile Include="..\Tennis2d\Ball2D.cs">
       <Link>Ball2D.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Game1.cs">
+    <Compile Include="..\Tennis2d\Game1.cs">
       <Link>Game1.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\GameObjects.cs">
+    <Compile Include="..\Tennis2d\GameObjects.cs">
       <Link>GameObjects.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Paddle2D.cs">
+    <Compile Include="..\Tennis2d\Paddle2D.cs">
       <Link>Paddle2D.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Score.cs">
+    <Compile Include="..\Tennis2d\Score.cs">
       <Link>Score.cs</Link>
     </Compile>
-    <Compile Include="..\MonoPong\Sprite2D.cs">
+    <Compile Include="..\Tennis2d\Sprite2D.cs">
       <Link>Sprite2D.cs</Link>
     </Compile>
     <Compile Include="Program.cs" />

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 
-namespace MonoPong
+namespace Tennis2d
 {
     internal abstract class AbstractPaddle2D : Sprite2D
     {

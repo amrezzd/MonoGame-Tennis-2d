@@ -2,7 +2,7 @@
 using Foundation;
 using UIKit;
 
-namespace MonoPong.Ios
+namespace Tennis2d.Ios
 {
     [Register("AppDelegate")]
     class Program : UIApplicationDelegate

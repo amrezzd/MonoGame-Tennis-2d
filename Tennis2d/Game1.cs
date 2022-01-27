@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using System;
 
-namespace MonoPong
+namespace Tennis2d
 {
     public class Game1 : Game
     {
@@ -36,8 +36,8 @@ namespace MonoPong
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             Texture2D paddleTexture = Content.Load<Texture2D>("paddle");
-
             var gameBounds = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
             _playerPaddle = new PlayerPaddle2D(paddleTexture, Vector2.Zero, gameBounds);
 
             Vector2 aiPaddlePos = new Vector2(gameBounds.Width - _playerPaddle.Width, 0);
